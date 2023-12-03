@@ -48,6 +48,14 @@ function removeItem(item) {
     //     e.target.parentElement.parentElement.remove();
     // }
 }
+
+function clearItems(){
+    while(listItem.firstChild){
+        listItem.firstChild.remove(listItem.firstChild);
+    }
+    localStorage.removeItem('items');
+}
+
 function addItemToStorage(item){
     const itemsFromStorage = getItemsFromStorage()
     itemsFromStorage.push(item);
@@ -80,3 +88,4 @@ function onClickItem(e) {
 
 formItem.addEventListener('submit', onAddItemSubmit);
 listItem.addEventListener('click', onClickItem);
+clearBtn.addEventListener('click', clearItems);
