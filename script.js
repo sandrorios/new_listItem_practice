@@ -3,3 +3,29 @@ let listItem = document.getElementById('list-item');
 let inputField = document.getElementById('input-field');
 let clearBtn = document.getElementById('clear');
 let filter = document.getElementById('filter');
+
+function onAddItemSubmit(e){
+    e.preventDefault();
+    let newItem = inputField.value;
+    if(newItem === ''){
+        alert("Please add item");
+        return;
+    }
+
+    addItemToDOM(newItem);
+    addItemToStorage(newItem);
+
+}
+
+function addItemToDOM(item){
+    let li = document.createElement('li');
+    li.appendChild(document.createTextNode(item));
+    listItem.appendChild(li);
+
+    inputField.value = '';
+    inputField.focus();
+}
+
+
+
+formItem.addEventListener('submit', onAddItemSubmit);
