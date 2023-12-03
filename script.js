@@ -4,6 +4,11 @@ let inputField = document.getElementById('input-field');
 let clearBtn = document.getElementById('clear');
 let filter = document.getElementById('filter');
 
+
+function displayItem(){
+    const itemsFromStorage = getItemsFromStorage();
+    itemsFromStorage.forEach(item => addItemToDOM(item));
+}
 function onAddItemSubmit(e){
     e.preventDefault();
     let newItem = inputField.value;
@@ -121,5 +126,6 @@ formItem.addEventListener('submit', onAddItemSubmit);
 listItem.addEventListener('click', onClickItem);
 clearBtn.addEventListener('click', clearItems);
 filter.addEventListener('input', filterItems);
+document.addEventListener('DOMContentLoaded', displayItem);
 
 checkUI();
