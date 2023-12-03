@@ -15,6 +15,7 @@ function onAddItemSubmit(e){
     addItemToDOM(newItem);
     addItemToStorage(newItem);
 
+    checkUI();
 }
 
 function addItemToDOM(item){
@@ -25,6 +26,8 @@ function addItemToDOM(item){
     li.appendChild(button);
     inputField.value = '';
     inputField.focus();
+
+    checkUI();
 }
 
 function filterItems(e){
@@ -38,6 +41,7 @@ function filterItems(e){
             items.style.display = 'none';
         }
     })
+    checkUI();
 }
 
 function createButton(classes){
@@ -60,6 +64,7 @@ function removeItem(item) {
     // if(e.target.parentElement.classList.contains('remove-item')){
     //     e.target.parentElement.parentElement.remove();
     // }
+    checkUI();
 }
 
 function clearItems(){
@@ -67,6 +72,7 @@ function clearItems(){
         listItem.firstChild.remove(listItem.firstChild);
     }
     localStorage.removeItem('items');
+    checkUI();
 }
 
 function addItemToStorage(item){
@@ -96,6 +102,18 @@ function onClickItem(e) {
     if(e.target.parentElement.classList.contains('remove-item')){
         removeItem(e.target.parentElement.parentElement);
     }
+    checkUI();
+}
+
+function checkUI(){
+    let items = listItem.querySelectorAll('li');
+    if(items.length === 0){
+        clearBtn.style.display = 'none';
+        filter.style.display = 'none';
+    }else{
+        clearBtn.style.display = 'block';
+        filter.style.display = 'block';
+    }
 }
 
 
@@ -103,3 +121,5 @@ formItem.addEventListener('submit', onAddItemSubmit);
 listItem.addEventListener('click', onClickItem);
 clearBtn.addEventListener('click', clearItems);
 filter.addEventListener('input', filterItems);
+
+checkUI();
