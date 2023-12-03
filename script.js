@@ -27,15 +27,19 @@ function addItemToDOM(item){
 }
 
 function addItemToStorage(item){
+    const itemsFromStorage = getItemsFromStorage()
+    itemsFromStorage.push(item);
+    localStorage.setItem('items', JSON.stringify(itemsFromStorage));
+}
+
+function getItemsFromStorage() {
     let itemsFromStorage;
     if(localStorage.getItem('items') === null){
         itemsFromStorage = [];
     }else{
-        
         itemsFromStorage = JSON.parse(localStorage.getItem('items'));
     }
-    itemsFromStorage.push(item);
-    localStorage.setItem('items', JSON.stringify(itemsFromStorage));
+        return itemsFromStorage;
 }
 
 
